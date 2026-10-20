@@ -1,8 +1,13 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
 
 
 export const metadata: Metadata = {
@@ -14,6 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ja"
+      className={jetbrainsMono.variable}
     >
       <body className="min-h-full flex flex-col">
         <Header />

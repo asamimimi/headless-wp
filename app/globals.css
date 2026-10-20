@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
+/* Light.tokens.json から変換(Figmaのコードシンタックス名に準拠) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background */
+  --color-bg-base: #F7F6FB;
+  --color-bg-subtle: #EFECF9;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-deep: #17152E;
+
+  /* Accent */
+  --color-accent-primary: #7B61FF;
+  --color-accent-primary-strong: #5A41E0;
+  --color-accent-primary-soft: #E2DCFF;
+  --color-accent-pink: #C93D84;
+  --color-accent-mint: #2FB892;
+
+  /* Text */
+  --color-text-primary: #1F1D36;
+  --color-text-secondary: #67647D;
+  --color-text-inverse: #F7F6FB;
+
+  /* Border */
+  --color-border-default: #E3E0EE;
+
+  /* Code */
+  --color-code-bg: #1B1932;
+  --color-code-text: #E9E6FF;
+  --color-code-keyword: #FF8CC6;
+  --color-code-string: #8FE3C6;
+  --color-code-function: #B9A8FF;
+  --color-code-comment: #8C88A8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-base);
 }
