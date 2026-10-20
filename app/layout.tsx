@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-
+import Header from "./Header";
 
 
 
@@ -16,6 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ja"
     >
       <body className="min-h-full flex flex-col">
+        <Header />
         <Suspense>
           {children}
         </Suspense>
