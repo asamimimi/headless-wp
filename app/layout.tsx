@@ -23,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Header />
-        <Suspense>
+        <Suspense fallback={<p>読み込み中...</p>}>
           {children}
         </Suspense>
       </body>
