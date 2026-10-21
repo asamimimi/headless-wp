@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: 'wpadmin.asaminoweb.com' }],
+  },
 };
 
 export default nextConfig;

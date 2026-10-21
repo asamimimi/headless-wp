@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
+import { endpoint } from "@/lib/graphql";
+import { cacheLife, cacheTag } from "next/cache";
 
 const gradient = 'bg-[linear-gradient(165deg,#7b61ff_0%,#c46bff_35.714%,#ff8cc6_71.429%)]';
 
@@ -11,7 +13,67 @@ const stats = [
     { value: '2021', label: 'since' },
 ];
 
-const Mv = () => {
+
+// GraphQLクエリの定義（最新5件の投稿を取得）
+const GET_LATEST_POSTS_QUERY = `
+  query GetLatestPosts {
+    posts(first: 1, where: { orderby: { field: DATE, order: DESC } }) {
+      nodes {
+        id
+        title
+        slug
+        date
+        excerpt
+        categories {
+            nodes {
+                categoryId
+                name
+            }
+            }
+        featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+      }
+    }
+  }
+`;
+// 最新の投稿取得
+async function getLatestPosts() {
+    "use cache";
+    cacheLife("hours");
+    cacheTag("menu");
+
+    const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            query: GET_LATEST_POSTS_QUERY,
+        }),
+
+        next: {
+            revalidate: 3600, // 3600秒（1時間）キャッシュ
+            tags: ['posts']
+        },
+    });
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch WordPress data');
+    }
+
+    const { data } = await res.json();
+    return data.posts.nodes;
+}
+
+
+const Mv = async () => {
+    const LatestPosts = await getLatestPosts();
+    console.log(LatestPosts);
+
     return (
         <section className="mx-auto flex w-full max-w-360 flex-col items-center gap-18 px-5 pt-16 pb-20 lg:flex-row lg:px-35 lg:pt-24 lg:pb-28">
             <div className="flex min-w-0 flex-1 flex-col items-start gap-7">
@@ -61,47 +123,43 @@ const Mv = () => {
             </div>
 
             {/* 注目シリーズ(サムネイルは WP のアイキャッチに差し替え予定) */}
-            <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 px-5 pt-5 pb-7 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md">
-                <div className="relative flex h-65 items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(150deg,#221e48_0%,#3b2c8a_35.714%,#7b4fc9_71.429%)]">
-                    <Image src="/Top/Mv/thumbnail-grid.svg" alt="" fill className="object-cover" />
-                    <div className="absolute inset-[-30%_-16.67%_20%_55.56%]">
-                        <div className="absolute inset-[-20.98%_-21.44%]">
-                            <Image src="/Top/Mv/glow.svg" alt="" fill />
-                        </div>
-                    </div>
-                    <p className="relative font-display text-[30px] leading-[1.2] font-medium tracking-[-0.3px] whitespace-nowrap text-white opacity-85">
-                        Headless WP ✦ Next.js
-                    </p>
-                </div>
+            {/* 投稿記事の表示 */}
+            {LatestPosts.map((LatestPost) => {
+                const imageUrl = LatestPost.featuredImage?.node?.sourceUrl;
+                const imageAlt = LatestPost.featuredImage?.node?.altText;
+                return (
+                    <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 pb-7 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
+                        <Link href={`/posts/${LatestPost.slug}`} className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 px-5 pt-5 pb-7 ">
+                            <div className="relative flex h-65 items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(150deg,#221e48_0%,#3b2c8a_35.714%,#7b4fc9_71.429%)]">
+                                {imageUrl ? <Image src={imageUrl} alt={imageAlt} fill className="object-cover" /> : <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill className="object-cover" />}
 
-                <div className="flex flex-col gap-3 px-2">
-                    <div className="flex items-center gap-3 font-mono text-xs leading-[1.4] font-medium whitespace-nowrap">
-                        <span className={`rounded-full px-2.5 py-0.75 tracking-[0.48px] text-(--color-text-inverse) ${gradient}`}>FEATURED</span>
-                        <span className="flex items-center gap-1.5 tracking-[1.2px] text-(--color-accent-pink)">
-                            <Image src="/Top/Mv/dot.svg" alt="" width={6} height={6} />
-                            SERIES 01
-                        </span>
-                    </div>
-                    <h3 className="font-plex text-[21px] leading-normal font-bold tracking-[0.42px] text-(--color-text-primary)">
-                        ゼロから始めるヘッドレス WordPress
-                        <br />
-                        — 設計・実装・運用まで全10回
-                    </h3>
-                    <div className="flex items-center gap-3">
-                        <div
-                            role="progressbar"
-                            aria-label="シリーズの進捗"
-                            aria-valuemin={0}
-                            aria-valuemax={10}
-                            aria-valuenow={7}
-                            className="h-1.5 flex-1 overflow-hidden rounded-[3px] bg-(--color-bg-subtle)"
-                        >
-                            <div className={`h-full w-[70%] rounded-[3px] ${gradient}`} />
-                        </div>
-                        <p className="font-mono text-xs leading-[1.4] font-medium tracking-[0.48px] whitespace-nowrap text-(--color-text-secondary)">7 / 10</p>
-                    </div>
-                </div>
-            </article>
+                                <div className="absolute inset-[-30%_-16.67%_20%_55.56%]">
+                                    <div className="absolute inset-[-20.98%_-21.44%]">
+                                        <Image src="/Top/Mv/glow.svg" alt="" fill />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="flex flex-col gap-3 px-2">
+                                <div className="flex items-center gap-3 font-mono text-xs leading-[1.4] font-medium whitespace-nowrap">
+                                    {LatestPost.categories.nodes.map((cat) => (
+                                        <span className={`rounded-full px-2.5 py-0.75 tracking-[0.48px] text-(--color-text-inverse) ${gradient}`} key={cat.id}>{cat.name}</span>
+                                    ))}
+
+
+                                </div>
+                                <h3 className="font-plex text-[21px] leading-normal font-bold tracking-[0.42px] text-(--color-text-primary)">
+                                    {LatestPost.title}
+                                </h3>
+                            </div>
+                        </Link>
+                    </article>
+                )
+            }
+
+            )}
+
         </section>
     )
 }
