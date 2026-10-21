@@ -1,12 +1,24 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans_JP, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-outfit",
+});
+
+const ibmPlexSansJp = IBM_Plex_Sans_JP({
+  weight: ["400", "600", "700"],
+  variable: "--font-ibm-plex-sans-jp",
+  preload: false,
 });
 
 
@@ -19,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ja"
-      className={jetbrainsMono.variable}
+      className={`${jetbrainsMono.variable} ${outfit.variable} ${ibmPlexSansJp.variable}`}
     >
       <body className="min-h-full flex flex-col">
         <Header />
