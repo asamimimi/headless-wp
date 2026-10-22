@@ -1,8 +1,14 @@
+"use cache";
 import { client } from "@/lib/graphql";
 import { gql } from "graphql-request";
 import parse from 'html-react-parser'
+import { cacheLife, cacheTag } from "next/cache";
+
+cacheLife("hours");
+cacheTag("menu");
 
 export default async function PostPage({
+
     params,
 }: {
     params: Promise<{ slug: string }>
