@@ -5,6 +5,7 @@ import Link from "next/link";
 import Mv from "./components/top/Mv";
 import LatestPosts from "./components/top/LatestPosts";
 import PopularPost from "./components/top/PopularPost";
+import About from "./components/top/About";
 
 type PostsResponse = {
   posts: { nodes: { title: string; slug: string }[] };
@@ -33,6 +34,7 @@ export default async function Home() {
       <Mv />
       <LatestPosts />
       <PopularPost />
+      <About />
 
     </main>
   );

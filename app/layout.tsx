@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans_JP, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Suspense fallback={<p>読み込み中...</p>}>
           {children}
         </Suspense>
+        <Footer />
       </body>
     </html>
   );

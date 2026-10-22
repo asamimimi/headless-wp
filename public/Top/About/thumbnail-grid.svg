@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="grid" clip-path="url(#clip0_0_41)">
+<path id="Vector" d="M26.6667 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_2" d="M53.3333 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_3" d="M80 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_4" d="M106.667 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_5" d="M133.333 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_6" d="M160 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_7" d="M186.667 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_8" d="M213.333 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_9" d="M240 0V240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_10" d="M0 48H240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_11" d="M0 96H240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_12" d="M0 144H240" stroke="#7B61FF" stroke-opacity="0.08"/>
+<path id="Vector_13" d="M0 192H240" stroke="#7B61FF" stroke-opacity="0.08"/>
+</g>
+<defs>
+<clipPath id="clip0_0_41">
+<rect width="240" height="240" fill="white"/>
+</clipPath>
+</defs>
+</svg>

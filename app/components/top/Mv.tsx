@@ -7,11 +7,11 @@ import { cacheLife, cacheTag } from "next/cache";
 const gradient = 'bg-[linear-gradient(165deg,#7b61ff_0%,#c46bff_35.714%,#ff8cc6_71.429%)]';
 
 // 実績の数値(WordPress連携までは固定値)
-const stats = [
-    { value: '128', label: 'articles' },
-    { value: '12', label: 'series' },
-    { value: '2021', label: 'since' },
-];
+// const stats = [
+//     { value: '128', label: 'articles' },
+//     { value: '12', label: 'series' },
+//     { value: '2021', label: 'since' },
+// ];
 
 
 // GraphQLクエリの定義（最新1件の投稿を取得）
@@ -76,7 +76,15 @@ const Mv = async () => {
 
     return (
         <>
-            <section className="mx-auto flex w-full max-w-360 flex-col items-center gap-18 px-5 pt-16 pb-20 lg:flex-row lg:px-35 lg:pt-24 lg:pb-28">
+            <section className="mx-auto flex w-full max-w-360 flex-col items-center gap-18 px-5 pt-16 pb-20 lg:flex-row lg:px-35 lg:pt-24 lg:pb-28 mv_bg">
+                <Image
+                    src="/Top/Mv/bg_Hero.webp"
+                    alt="背景画像"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority // ヒーロー画像などの場合は優先読み込み
+                />
+
                 <div className="flex min-w-0 flex-1 flex-col items-start gap-7">
                     <p className="flex items-center gap-2 rounded-full border border-(--color-accent-primary-soft) bg-(--color-bg-surface) py-1.5 pr-3.5 pl-3 font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-accent-primary-strong)">
                         <Image src="/Top/Mv/ellipse.svg" alt="" width={8} height={8} />
@@ -113,14 +121,14 @@ const Mv = async () => {
                         </Link>
                     </div>
 
-                    <dl className="flex gap-10 pt-3 whitespace-nowrap">
+                    {/* <dl className="flex gap-10 pt-3 whitespace-nowrap">
                         {stats.map((stat) => (
                             <div key={stat.label} className="flex flex-col-reverse gap-0.5">
                                 <dt className="font-mono text-xs leading-[1.4] font-medium tracking-[0.48px] text-(--color-text-secondary)">{stat.label}</dt>
                                 <dd className="font-display text-[30px] leading-[1.2] tracking-[-0.3px] text-(--color-text-primary)">{stat.value}</dd>
                             </div>
                         ))}
-                    </dl>
+                    </dl> */}
                 </div>
 
                 {/* 注目シリーズ(サムネイルは WP のアイキャッチに差し替え予定) */}
@@ -129,7 +137,7 @@ const Mv = async () => {
                     const imageUrl = LatestPost.featuredImage?.node?.sourceUrl;
                     const imageAlt = LatestPost.featuredImage?.node?.altText;
                     return (
-                        <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 pb-7 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
+                        <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
                             <Link href={`/posts/${LatestPost.slug}`} className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 px-5 pt-5 pb-7 ">
                                 <div className="relative flex h-65 items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(150deg,#221e48_0%,#3b2c8a_35.714%,#7b4fc9_71.429%)]">
                                     {imageUrl ? <Image src={imageUrl} alt={imageAlt} fill className="object-cover" /> : <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill className="object-cover" />}
@@ -145,7 +153,7 @@ const Mv = async () => {
                                 <div className="flex flex-col gap-3 px-2">
                                     <div className="flex items-center gap-3 font-mono text-xs leading-[1.4] font-medium whitespace-nowrap">
                                         {LatestPost.categories.nodes.map((cat) => (
-                                            <span className={`rounded-full px-2.5 py-0.75 tracking-[0.48px] text-(--color-text-inverse) ${gradient}`} key={cat.id}>{cat.name}</span>
+                                            <span className={`rounded-full px-2.5 py-0.75 tracking-[0.48px] text-(--color-text-inverse) ${gradient}`} key={cat.categoryId}>{cat.name}</span>
                                         ))}
 
 
