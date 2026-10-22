@@ -14,7 +14,7 @@ const stats = [
 ];
 
 
-// GraphQLクエリの定義（最新5件の投稿を取得）
+// GraphQLクエリの定義（最新1件の投稿を取得）
 const GET_LATEST_POSTS_QUERY = `
   query GetLatestPosts {
     posts(first: 1, where: { orderby: { field: DATE, order: DESC } }) {

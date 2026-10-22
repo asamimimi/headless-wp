@@ -3,6 +3,8 @@ import { gql } from "graphql-request";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 import Mv from "./components/top/Mv";
+import LatestPosts from "./components/top/LatestPosts";
+import PopularPost from "./components/top/PopularPost";
 
 type PostsResponse = {
   posts: { nodes: { title: string; slug: string }[] };
@@ -29,14 +31,9 @@ export default async function Home() {
   return (
     <main>
       <Mv />
-      <h1 id="latest">Blog</h1>
-      <ul>
-        {posts.map((p) => (
-          <li key={p.slug}>
-            <Link href={`/posts/${p.slug}`}>{p.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <LatestPosts />
+      <PopularPost />
+
     </main>
   );
 }
