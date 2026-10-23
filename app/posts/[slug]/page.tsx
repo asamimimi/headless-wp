@@ -1,11 +1,11 @@
 "use cache";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 import { client } from "@/lib/graphql";
 import { gql } from "graphql-request";
 import parse from 'html-react-parser'
 import { cacheLife, cacheTag } from "next/cache";
 
-cacheLife("hours");
-cacheTag("menu");
+
 
 export default async function PostPage({
 
@@ -14,7 +14,8 @@ export default async function PostPage({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-
+    cacheLife("hours");
+    cacheTag("menu");
     const query = gql`
 		query Post($slug: ID!) { 
 			post(id: $slug, idType: SLUG) { 
@@ -29,6 +30,7 @@ export default async function PostPage({
 
     return (
         <article>
+            <Breadcrumbs title={post.title} />
             <h1>{post.title}</h1>
             <div>{parse(post.content)}</div>
         </article>
