@@ -1,9 +1,12 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_JP, JetBrains_Mono, Outfit } from "next/font/google";
+import { IBM_Plex_Sans_JP, JetBrains_Mono, Outfit, Geist } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -32,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ja"
-      className={`${jetbrainsMono.variable} ${outfit.variable} ${ibmPlexSansJp.variable}`}
+      className={cn(jetbrainsMono.variable, outfit.variable, ibmPlexSansJp.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
         <Header />

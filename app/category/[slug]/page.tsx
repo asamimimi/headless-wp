@@ -1,5 +1,8 @@
-import { fetchPostsByCategory } from '@/lib/blogApi';
 import Link from 'next/link';
+import Image from 'next/image';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
+import { PostGrid } from '@/app/components/PostCard';
+import { fetchCategoryBySlug, fetchPostsByCategory } from '@/lib/blogApi';
 
 interface CategoryPageProps {
     params: Promise<{ slug: string }>;
@@ -7,21 +10,36 @@ interface CategoryPageProps {
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
     const { slug } = await params;
-    const posts = await fetchPostsByCategory(slug, 10);
+    const [category, posts] = await Promise.all([
+        fetchCategoryBySlug(slug),
+        fetchPostsByCategory(slug, 12),
+    ]);
+    const categoryName = category?.name ?? decodeURIComponent(slug);
 
     return (
-        <main className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">カテゴリー: {slug}</h1>
-            <div className="grid gap-4">
-                {posts.map((post: any) => (
-                    <article key={post.databaseId} className="border p-4 rounded">
-                        <Link href={`/posts/${post.slug}`}>
-                            <h2 className="text-xl font-semibold hover:underline">{post.title}</h2>
-                        </Link>
-                        <p className="text-sm text-gray-500">{new Date(post.date).toLocaleDateString()}</p>
-                    </article>
-                ))}
-            </div>
-        </main>
+        <div>
+            <Breadcrumbs currentLabel={categoryName} />
+            <section className="mx-auto flex w-full max-w-360 flex-col gap-12 px-5 pt-16 pb-20 lg:px-35 lg:pt-24 lg:pb-28">
+                {/* セクションタイトル */}
+                <div className="flex flex-col items-start gap-2.5 whitespace-nowrap">
+                    <h1 className="flex items-baseline gap-4">
+                        <span className="font-display text-[36px] leading-[1.2] font-medium tracking-[-0.36px] text-(--color-text-primary)">{categoryName}</span>
+                        <span className="font-plex text-xs leading-normal font-medium tracking-[0.72px] text-(--color-text-secondary)">カテゴリー</span>
+                    </h1>
+                </div>
+
+                <PostGrid posts={posts} />
+
+                <div className="flex justify-center">
+                    <Link
+                        href="/posts"
+                        className="flex items-center gap-2.5 rounded-full border border-(--color-border-default) bg-(--color-bg-surface) py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-primary) transition-colors hover:border-(--color-accent-primary)"
+                    >
+                        記事一覧を見る
+                        <Image src="/Top/Mv/icon-arrow.svg" alt="" width={16} height={16} />
+                    </Link>
+                </div>
+            </section>
+        </div>
     );
 }
