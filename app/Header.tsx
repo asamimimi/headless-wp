@@ -64,11 +64,8 @@ const Header = async () => {
             </div>
             <div className="flex items-center gap-4">
                 <SearchDialog />
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hidden lg:block">
+                <a href="https://github.com/asamimimi" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hidden lg:block">
                     <Image src="/Top/Header/icon-github.svg" alt="" width={20} height={20} />
-                </a>
-                <a href="/feed" aria-label="RSS" className="hidden lg:block">
-                    <Image src="/Top/Header/icon-rss.svg" alt="" width={20} height={20} />
                 </a>
                 {/* SPのみハンバーガーメニュー */}
                 <div className="lg:hidden">

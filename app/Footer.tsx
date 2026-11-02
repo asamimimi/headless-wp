@@ -152,15 +152,13 @@ const Footer = async () => {
                         © 2026 asami.dev<span className="max-lg:hidden"> — Built with Next.js &amp; WordPress</span>
                     </p>
                     <div className="flex items-start gap-4">
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <a href="https://github.com/asamimimi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <Image src="/Footer/icon-github.svg" alt="" width={20} height={20} />
                         </a>
-                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+                        <a href="https://x.com/asamiwebcreate?s=11&t=Ry_WNUuRDBSMeu25d-tnFw" target="_blank" rel="noopener noreferrer" aria-label="X">
                             <Image src="/Footer/icon-x.svg" alt="" width={20} height={20} />
                         </a>
-                        <a href="/feed" aria-label="RSS">
-                            <Image src="/Footer/icon-rss.svg" alt="" width={20} height={20} />
-                        </a>
+
                     </div>
                 </div>
             </div>
