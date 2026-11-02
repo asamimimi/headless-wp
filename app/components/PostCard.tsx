@@ -29,7 +29,7 @@ export const PostCard = ({ LatestPost }: { LatestPost: Post }) => {
                         <Image src={imageUrl} alt={imageAlt} fill sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" className="object-cover" />
                     ) : (
                         <>
-                            <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill />
+                            <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill className="object-cover" />
                             <div className="absolute inset-[-30%_-16.67%_20%_55.56%]">
                                 <div className="absolute inset-[-27.27%_-27.43%]">
                                     <Image src="/Top/LatestPosts/glow.svg" alt="" fill />

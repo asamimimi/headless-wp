@@ -72,19 +72,20 @@ const PopularPost = async () => {
     const popularPosts = await getPopularPosts();
     return (
         <section className="bg-(--color-bg-subtle)">
-            <div className="mx-auto flex w-full max-w-360 flex-col gap-10 px-5 py-16 lg:px-35 lg:py-24">
+            <div className="mx-auto flex w-full max-w-360 flex-col gap-5 px-5 py-12 lg:gap-10 lg:px-35 lg:py-24">
                 {/* セクションタイトル */}
                 <div className="flex flex-col items-start gap-2.5 whitespace-nowrap">
                     <p className="font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-accent-pink)">
                         {'// 03 — popular'}
                     </p>
                     <h2 className="flex items-baseline gap-4">
-                        <span className="font-display text-[36px] leading-[1.2] font-medium tracking-[-0.36px] text-(--color-text-primary)">Popular</span>
+                        <span className="font-display text-[28px] leading-[1.2] font-medium tracking-[-0.28px] text-(--color-text-primary) lg:text-[36px] lg:tracking-[-0.36px]">Popular</span>
                         <span className="font-plex text-xs leading-normal font-medium tracking-[0.72px] text-(--color-text-secondary)">よく読まれている記事</span>
                     </h2>
                 </div>
 
-                <ol className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {/* SPは白いボックスにまとめて3件のみ表示 */}
+                <ol className="grid grid-cols-1 gap-5 md:grid-cols-2 max-lg:rounded-[20px] max-lg:bg-(--color-bg-surface) max-lg:px-4 max-lg:py-5 max-lg:[&>*:nth-child(n+4)]:hidden lg:grid-cols-3 lg:gap-6">
                     {popularPosts.map((popularPost, index) => {
                         const category = popularPost.categories.nodes[0];
                         const imageUrl = popularPost.featuredImage?.node?.sourceUrl;
@@ -92,8 +93,8 @@ const PopularPost = async () => {
 
                         return (
                             <li key={popularPost.id}>
-                                <article className="h-full rounded-[20px] bg-(--color-bg-surface) transition-transform hover:-translate-y-1">
-                                    <Link href={`/posts/${popularPost.slug}`} className="flex h-full items-center gap-4 p-5">
+                                <article className="h-full transition-transform lg:rounded-[20px] lg:bg-(--color-bg-surface) lg:hover:-translate-y-1">
+                                    <Link href={`/posts/${popularPost.slug}`} className="flex h-full items-center gap-4 lg:p-5">
                                         <p className="font-display text-[28px] leading-[1.2] font-light tracking-[-0.28px] text-(--color-accent-primary)">
                                             {String(index + 1).padStart(2, '0')}
                                         </p>

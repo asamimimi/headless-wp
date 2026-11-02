@@ -3,6 +3,7 @@ import { gql } from "graphql-request";
 import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 import Mv from "./components/top/Mv";
+import Topics from "./components/top/Topics";
 import LatestPosts from "./components/top/LatestPosts";
 import PopularPost from "./components/top/PopularPost";
 import About from "./components/top/About";
@@ -32,6 +33,7 @@ export default async function Home() {
   return (
     <main>
       <Mv />
+      <Topics />
       <LatestPosts />
       <PopularPost />
       <About />

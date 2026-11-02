@@ -11,10 +11,12 @@ type Props = {
     tabs: Tab[];
     panels: Record<string, ReactNode>;
     heading: ReactNode;
+    // SPではタブを非表示にする（TOPページ用）
+    hideTabsOnMobile?: boolean;
 };
 
 // カテゴリーの切り替え(記事カードはサーバー側で描画済みのものを受け取る)
-const CategoryTabs = ({ tabs, panels, heading }: Props) => {
+const CategoryTabs = ({ tabs, panels, heading, hideTabsOnMobile = false }: Props) => {
     const [active, setActive] = useState(tabs[0]?.id);
 
     return (
@@ -23,7 +25,7 @@ const CategoryTabs = ({ tabs, panels, heading }: Props) => {
                 {heading}
 
                 {/* カテゴリー一覧 */}
-                <ul className="flex flex-wrap gap-2 font-mono text-xs leading-[1.4] font-medium tracking-[0.48px] whitespace-nowrap">
+                <ul className={`flex flex-wrap gap-2 font-mono text-xs leading-[1.4] font-medium tracking-[0.48px] whitespace-nowrap ${hideTabsOnMobile ? 'max-lg:hidden' : ''}`}>
                     {tabs.map((tab) => {
                         const isActive = tab.id === active;
                         return (

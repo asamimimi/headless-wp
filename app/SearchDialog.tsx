@@ -33,11 +33,14 @@ const SearchDialog = () => {
                 type="button"
                 onClick={open}
                 aria-haspopup="dialog"
-                className="flex items-center gap-6 rounded-[10px] border border-(--color-border-default) bg-(--color-bg-surface) py-2 pr-3 pl-4 font-mono text-xs font-medium leading-[1.4] tracking-[0.48px] text-(--color-text-secondary) transition-colors hover:border-(--color-accent-primary)"
+                aria-label="Search articles"
+                className="flex items-center lg:gap-6 lg:rounded-[10px] lg:border lg:border-(--color-border-default) lg:bg-(--color-bg-surface) lg:py-2 lg:pr-3 lg:pl-4 font-mono text-xs font-medium leading-[1.4] tracking-[0.48px] text-(--color-text-secondary) transition-colors lg:hover:border-(--color-accent-primary)"
             >
-                <Image src="/Top/Header/icon-search.svg" alt="" width={18} height={18} />
-                <span>Search articles</span>
-                <kbd className="rounded bg-(--color-bg-subtle) px-1.5 py-0.5 font-mono">⌘K</kbd>
+                {/* SPはアイコンのみ */}
+                <Image src="/Top/Header/icon-search-sp.svg" alt="" width={18} height={18} className="lg:hidden" />
+                <Image src="/Top/Header/icon-search.svg" alt="" width={18} height={18} className="hidden lg:block" />
+                <span className="hidden lg:inline">Search articles</span>
+                <kbd className="hidden rounded bg-(--color-bg-subtle) px-1.5 py-0.5 font-mono lg:inline">⌘K</kbd>
             </button>
 
             <dialog

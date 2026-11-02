@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="500" height="480" viewBox="0 0 500 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bg/aurora" opacity="0.5" filter="url(#filter0_f_0_373)">
+<ellipse cx="250" cy="240" rx="160" ry="150" fill="url(#paint0_linear_0_373)"/>
+</g>
+<defs>
+<filter id="filter0_f_0_373" x="0" y="0" width="500" height="480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="45" result="effect1_foregroundBlur_0_373"/>
+</filter>
+<linearGradient id="paint0_linear_0_373" x1="90" y1="90" x2="303.84" y2="318.096" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B9A8FF"/>
+<stop offset="1" stop-color="#FF9FCF"/>
+</linearGradient>
+</defs>
+</svg>

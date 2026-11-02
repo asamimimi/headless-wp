@@ -55,10 +55,10 @@ export default async function NotFound() {
                             <Image src="/Article/code-dot-1.svg" alt="" width={10} height={10} />
                             <Image src="/Article/code-dot-2.svg" alt="" width={10} height={10} />
                             <Image src="/Article/code-dot-3.svg" alt="" width={10} height={10} />
-                            <p className="font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-code-comment)">zsh — lumina.dev</p>
+                            <p className="font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-code-comment)">zsh — asami.dev</p>
                         </div>
                         <div className="overflow-x-auto px-5 pt-4 pb-5 font-mono text-sm leading-[1.8] whitespace-nowrap text-(--color-code-text)">
-                            <p><span className="text-(--color-code-function)">$ </span>curl -I https://lumina.dev/this-page</p>
+                            <p><span className="text-(--color-code-function)">$ </span>curl -I https://asami.dev/this-page</p>
                             <p>HTTP/2 <span className="text-(--color-code-keyword)">404 Not Found</span></p>
                             <p className="text-(--color-code-comment)"># でも大丈夫。おすすめの記事を見つけておきました ♡</p>
                         </div>

@@ -172,7 +172,7 @@ const PostCard = ({ LatestPost }: { LatestPost: Post }) => {
                     ) : (
                         <>
                             <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill />
-                            <div className="absolute inset-[-30%_-16.67%_20%_55.56%]">
+                            <div className="absolute inset-[-30%_-16.67%_20%_55.56%] object-cover">
                                 <div className="absolute inset-[-27.27%_-27.43%]">
                                     <Image src="/Top/LatestPosts/glow.svg" alt="" fill />
                                 </div>
@@ -219,7 +219,8 @@ const PostCard = ({ LatestPost }: { LatestPost: Post }) => {
 // 記事一覧のグリッド
 const PostGrid = ({ posts }: { posts: Post[] }) => (
     posts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        // SPは3件のみ表示
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 max-lg:[&>*:nth-child(n+4)]:hidden">
             {posts.map((post) => <PostCard key={post.id} LatestPost={post} />)}
         </div>
     ) : (
@@ -241,10 +242,11 @@ const LatestPosts = async () => {
     };
 
     return (
-        <section className="mx-auto flex w-full max-w-360 flex-col gap-12 px-5 pt-16 pb-20 lg:px-35 lg:pt-24 lg:pb-28">
+        <section className="mx-auto flex w-full max-w-360 flex-col gap-6 px-5 pt-10 pb-14 lg:gap-12 lg:px-35 lg:pt-24 lg:pb-28">
             <CategoryTabs
                 tabs={tabs}
                 panels={panels}
+                hideTabsOnMobile
                 heading={
                     /* セクションタイトル */
                     <div className="flex flex-col items-start gap-2.5 whitespace-nowrap">
@@ -252,7 +254,7 @@ const LatestPosts = async () => {
                             {'// 02 — latest'}
                         </p>
                         <h2 className="flex items-baseline gap-4">
-                            <span className="font-display text-[36px] leading-[1.2] font-medium tracking-[-0.36px] text-(--color-text-primary)">Latest Articles</span>
+                            <span className="font-display text-[28px] leading-[1.2] font-medium tracking-[-0.28px] text-(--color-text-primary) lg:text-[36px] lg:tracking-[-0.36px]">Latest Articles</span>
                             <span className="font-plex text-xs leading-normal font-medium tracking-[0.72px] text-(--color-text-secondary)">新着記事</span>
                         </h2>
                     </div>

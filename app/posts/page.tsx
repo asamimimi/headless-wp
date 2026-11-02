@@ -133,15 +133,6 @@ const Articles = async () => {
                     }
                 />
 
-                <div className="flex justify-center">
-                    <Link
-                        href="/posts"
-                        className="flex items-center gap-2.5 rounded-full border border-(--color-border-default) bg-(--color-bg-surface) py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-primary) transition-colors hover:border-(--color-accent-primary)"
-                    >
-                        記事一覧を見る
-                        <Image src="/Top/Mv/icon-arrow.svg" alt="" width={16} height={16} />
-                    </Link>
-                </div>
             </section>
 
         </div>

@@ -77,18 +77,25 @@ const Footer = async () => {
                 alt=""
                 width={840}
                 height={660}
-                className="pointer-events-none absolute -top-80 -right-45 max-w-none"
+                className="pointer-events-none absolute -top-80 -right-45 max-w-none max-lg:hidden"
+            />
+            <Image
+                src="/Footer/aurora-sp.svg"
+                alt=""
+                width={540}
+                height={540}
+                className="pointer-events-none absolute -top-80 left-0 max-w-none lg:hidden"
             />
 
-            <div className="relative mx-auto flex w-full max-w-360 flex-col gap-14 px-5 pt-16 pb-8 lg:px-20 lg:pt-20">
+            <div className="relative mx-auto flex w-full max-w-360 flex-col gap-10 px-5 pt-14 pb-8 lg:gap-14 lg:px-20 lg:pt-20">
                 <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex flex-col items-start gap-4">
-                        <Link href="/" className="flex items-center gap-2.5" aria-label="lumina.dev">
+                        <Link href="/" className="flex items-center gap-2.5" aria-label="asami.dev">
                             <span className="flex size-8 items-center justify-center rounded-[10px] bg-[linear-gradient(135deg,#7b61ff_0%,#c46bff_35.714%,#ff8cc6_71.429%)] font-mono text-[11px] leading-[1.4] font-medium tracking-[-0.44px] text-(--color-text-inverse)">
                                 {'</>'}
                             </span>
                             <span className="font-display text-[26px] leading-[1.2] font-semibold tracking-[-0.52px]">
-                                <span className="text-(--color-text-inverse)">lumina</span>
+                                <span className="text-(--color-text-inverse)">asami</span>
                                 <span className="text-(--color-accent-primary)">.dev</span>
                             </span>
                         </Link>
@@ -97,7 +104,7 @@ const Footer = async () => {
                         </p>
                     </div>
 
-                    <nav className="flex gap-18" aria-label="フッターメニュー">
+                    <nav className="flex gap-10 lg:gap-18" aria-label="フッターメニュー">
 
                         <div className="flex flex-col items-start gap-3">
                             <p className="font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-accent-primary-soft)">
@@ -117,7 +124,7 @@ const Footer = async () => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="flex flex-col items-start gap-3">
+                        {/* <div className="flex flex-col items-start gap-3">
                             <p className="font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-accent-primary-soft)">
                                 About
                             </p>
@@ -133,16 +140,16 @@ const Footer = async () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </div> */}
 
                     </nav>
                 </div>
 
                 <div className="h-px w-full bg-(--color-text-inverse) opacity-12" />
 
-                <div className="flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center justify-between gap-4">
                     <p className="font-mono text-xs leading-[1.4] font-medium tracking-[0.48px] text-(--color-text-inverse) opacity-60">
-                        © 2026 lumina.dev — Built with Next.js &amp; WordPress
+                        © 2026 asami.dev<span className="max-lg:hidden"> — Built with Next.js &amp; WordPress</span>
                     </p>
                     <div className="flex items-start gap-4">
                         <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

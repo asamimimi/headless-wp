@@ -86,29 +86,34 @@ const Mv = async () => {
 
     return (
         <>
-            <section className="mx-auto flex w-full max-w-360 flex-col items-center gap-18 px-5 pt-16 pb-20 lg:flex-row lg:px-35 lg:pt-24 lg:pb-28 mv_bg">
+            <section className="mx-auto flex w-full max-w-360 flex-col items-center gap-18 px-5 pt-12 pb-14 max-lg:relative max-lg:overflow-hidden lg:flex-row lg:px-35 lg:pt-24 lg:pb-28 mv_bg">
                 <Image
                     src="/Top/Mv/bg_Hero.webp"
                     alt="背景画像"
                     fill
                     style={{ objectFit: 'cover' }}
                     priority // ヒーロー画像などの場合は優先読み込み
+                    className="max-lg:hidden"
                 />
+                {/* SPの背景のぼかし */}
+                <Image src="/Top/Mv/aurora-sp-1.svg" alt="" width={500} height={480} className="pointer-events-none absolute -top-[107px] left-[70px] max-w-none lg:hidden" />
+                <Image src="/Top/Mv/aurora-sp-2.svg" alt="" width={420} height={400} className="pointer-events-none absolute top-[213px] -left-[190px] max-w-none lg:hidden" />
 
-                <div className="flex min-w-0 flex-1 flex-col items-start gap-7">
-                    <p className="flex items-center gap-2 rounded-full border border-(--color-accent-primary-soft) bg-(--color-bg-surface) py-1.5 pr-3.5 pl-3 font-mono text-[13px] leading-normal tracking-[0.26px] text-(--color-accent-primary-strong)">
-                        <Image src="/Top/Mv/ellipse.svg" alt="" width={8} height={8} />
+                <div className="flex min-w-0 flex-1 flex-col items-start gap-5.5 max-lg:relative lg:gap-7">
+                    <p className="flex items-center gap-2 rounded-full border border-(--color-accent-primary-soft) bg-(--color-bg-surface) py-1.25 pr-3 pl-2.5 font-mono text-[11px] leading-normal tracking-[0.22px] text-(--color-accent-primary-strong) lg:py-1.5 lg:pr-3.5 lg:pl-3 lg:text-[13px] lg:tracking-[0.26px]">
+                        <Image src="/Top/Mv/ellipse-sp.svg" alt="" width={7} height={7} className="lg:hidden" />
+                        <Image src="/Top/Mv/ellipse.svg" alt="" width={8} height={8} className="hidden lg:block" />
                         <span>{`console.log("hello, world")`}</span>
                     </p>
 
-                    <h2 className="font-display text-[40px] leading-[1.08] font-light tracking-[-0.02em] text-(--color-text-primary) md:text-[68px]">
+                    <h2 className="font-display text-[40px] leading-[1.1] font-light lg:leading-[1.08] tracking-[-0.02em] text-(--color-text-primary) md:text-[68px]">
                         Code with{' '}
                         <span className="bg-linear-to-r from-[#7b61ff] via-[#c46bff] to-[#ff8cc6] bg-clip-text font-normal text-transparent">grace</span>,
                         <br />
                         build the future.
                     </h2>
 
-                    <p className="font-plex text-base leading-loose tracking-[0.48px] text-(--color-text-secondary)">
+                    <p className="font-plex text-[13px] leading-[1.7] tracking-[0.39px] text-(--color-text-secondary) lg:text-base lg:leading-loose lg:tracking-[0.48px]">
                         やさしく、確かに、未来をつくる。
                         <br />
                         女性エンジニアが綴る、Web とクラウドと AI の技術ノート。
@@ -124,7 +129,7 @@ const Mv = async () => {
                         </Link>
                         <Link
                             href="/about"
-                            className="flex items-center gap-2.5 rounded-full border border-(--color-border-default) bg-(--color-bg-surface) py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-primary) transition-colors hover:border-(--color-accent-primary)"
+                            className="hidden items-center lg:flex gap-2.5 rounded-full border border-(--color-border-default) bg-(--color-bg-surface) py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-primary) transition-colors hover:border-(--color-accent-primary)"
                         >
                             About me
                             <Image src="/Top/Mv/icon-arrow.svg" alt="" width={16} height={16} />
@@ -147,7 +152,7 @@ const Mv = async () => {
                     const imageUrl = LatestPost.featuredImage?.node?.sourceUrl;
                     const imageAlt = LatestPost.featuredImage?.node?.altText ?? '';
                     return (
-                        <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
+                        <article className="hidden w-full max-w-125 lg:flex shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
                             <Link href={`/posts/${LatestPost.slug}`} className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 px-5 pt-5 pb-7 ">
                                 <div className="relative flex h-65 items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(150deg,#221e48_0%,#3b2c8a_35.714%,#7b4fc9_71.429%)]">
                                     {imageUrl ? <Image src={imageUrl} alt={imageAlt} fill className="object-cover" /> : <Image src="/Top/Mv/Thumbnail_Noimage.png" alt="noimage" fill className="object-cover" />}
