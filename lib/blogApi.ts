@@ -218,3 +218,20 @@ export async function fetchLatestPosts(first = 3): Promise<Post[]> {
     const data = await request<{ posts: { nodes: Post[] } }>(query, { first });
     return data?.posts?.nodes ?? [];
 }
+
+// キーワード検索（タイトル・本文が対象）
+export async function searchPosts(keyword: string, first = 24): Promise<Post[]> {
+    const query = `
+    query SearchPosts($search: String!, $first: Int) {
+      posts(first: $first, where: { search: $search, orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          ...PostFields
+        }
+      }
+    }
+    ${POST_FIELDS}
+  `;
+
+    const data = await request<{ posts: { nodes: Post[] } }>(query, { search: keyword, first });
+    return data?.posts?.nodes ?? [];
+}
