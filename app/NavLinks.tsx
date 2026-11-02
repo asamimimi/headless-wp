@@ -5,14 +5,12 @@ import { usePathname } from 'next/navigation';
 
 type MenuItem = { id: string; label: string; path: string };
 
-// 現在のパスと一致するメニューをアクティブ色にする
-const NavLinks = ({ items }: { items: MenuItem[] }) => {
-    const pathname = usePathname();
-
+// メニュー本体（pathname が未確定の間は null でアクティブ表示なし）
+export const NavList = ({ items, pathname }: { items: MenuItem[]; pathname: string | null }) => {
     return (
         <nav className="flex gap-9 font-mono text-sm font-medium leading-[1.4] whitespace-nowrap">
             {items.map((item) => {
-                const isActive = pathname === item.path || pathname.startsWith(`${item.path}/`);
+                const isActive = pathname !== null && (pathname === item.path || pathname.startsWith(`${item.path}/`));
 
                 return (
                     <Link
@@ -27,6 +25,13 @@ const NavLinks = ({ items }: { items: MenuItem[] }) => {
             })}
         </nav>
     );
+}
+
+// 現在のパスと一致するメニューをアクティブ色にする
+const NavLinks = ({ items }: { items: MenuItem[] }) => {
+    const pathname = usePathname();
+
+    return <NavList items={items} pathname={pathname} />;
 }
 
 export default NavLinks

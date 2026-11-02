@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Link from 'next/link';
 import { endpoint } from "@/lib/graphql";
 import { cacheLife, cacheTag } from "next/cache";
 import Image from 'next/image';
-import NavLinks from './NavLinks';
+import NavLinks, { NavList } from './NavLinks';
 import SearchDialog from './SearchDialog';
 type MenuItem = { id: string; label: string; path: string };
 
@@ -54,7 +54,10 @@ const Header = async () => {
                     />
                 </Link>
             </h1>
-            <NavLinks items={menuItems} />
+            {/* 動的ルートでは pathname がリクエスト時まで確定しないため Suspense で囲む */}
+            <Suspense fallback={<NavList items={menuItems} pathname={null} />}>
+                <NavLinks items={menuItems} />
+            </Suspense>
             <div className="flex items-center gap-4">
                 <SearchDialog />
                 <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

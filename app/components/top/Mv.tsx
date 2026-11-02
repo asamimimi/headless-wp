@@ -40,8 +40,18 @@ const GET_LATEST_POSTS_QUERY = `
     }
   }
 `;
+type MvPost = {
+    id: string;
+    title: string;
+    slug: string;
+    date: string;
+    excerpt: string;
+    categories: { nodes: { categoryId: number; name: string }[] };
+    featuredImage: { node: { sourceUrl: string; altText: string } } | null;
+};
+
 // 最新の投稿取得
-async function getLatestPosts() {
+async function getLatestPosts(): Promise<MvPost[]> {
     "use cache";
     cacheLife("hours");
     cacheTag("menu");
@@ -135,7 +145,7 @@ const Mv = async () => {
                 {/* 投稿記事の表示 */}
                 {LatestPosts.map((LatestPost) => {
                     const imageUrl = LatestPost.featuredImage?.node?.sourceUrl;
-                    const imageAlt = LatestPost.featuredImage?.node?.altText;
+                    const imageAlt = LatestPost.featuredImage?.node?.altText ?? '';
                     return (
                         <article className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 shadow-[0px_16px_40px_0px_rgba(92,64,224,0.1)] backdrop-blur-md" key={LatestPost.id}>
                             <Link href={`/posts/${LatestPost.slug}`} className="flex w-full max-w-125 shrink-0 flex-col gap-5 overflow-hidden rounded-[28px] border border-white bg-white/70 px-5 pt-5 pb-7 ">
