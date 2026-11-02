@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["200", "300", "400", "500"],
   variable: "--font-outfit",
 });
 

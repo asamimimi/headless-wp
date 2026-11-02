@@ -93,9 +93,7 @@ const Footer = async () => {
                             </span>
                         </Link>
                         <p className="font-plex text-[13px] leading-[1.7] tracking-[0.39px] text-(--color-text-inverse) opacity-75">
-                            やさしく、確かに、未来をつくる。
-                            <br />
-                            女性エンジニアが綴る、Web とクラウドと AI の技術ノート。
+                            WordPressの実装がメイン。<br />ReactとNext.jsの忘備録。
                         </p>
                     </div>
 
@@ -159,7 +157,7 @@ const Footer = async () => {
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer >
     )
 }
 

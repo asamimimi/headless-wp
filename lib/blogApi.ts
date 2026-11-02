@@ -201,3 +201,20 @@ export async function fetchSidebarData(): Promise<{ popularPosts: SidebarPost[];
         tags: data?.tags?.nodes ?? [],
     };
 }
+
+// 最新記事（記事カード用）
+export async function fetchLatestPosts(first = 3): Promise<Post[]> {
+    const query = `
+    query GetLatestPosts($first: Int) {
+      posts(first: $first, where: { orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          ...PostFields
+        }
+      }
+    }
+    ${POST_FIELDS}
+  `;
+
+    const data = await request<{ posts: { nodes: Post[] } }>(query, { first });
+    return data?.posts?.nodes ?? [];
+}
