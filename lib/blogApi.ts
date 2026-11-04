@@ -65,7 +65,7 @@ export async function fetchPostsByCategory(categorySlug: string, first = 10): Pr
             query,
             variables: { categoryName: categorySlug, first },
         }),
-        next: { revalidate: 60 }, // 必要に応じてISRなどのキャッシュ設定
+        next: { revalidate: 60, tags: ["posts"] }, // 必要に応じてISRなどのキャッシュ設定
     });
 
     const json = await response.json();
@@ -91,7 +91,7 @@ export async function fetchCategoryBySlug(categorySlug: string) {
             query,
             variables: { slug: categorySlug },
         }),
-        next: { revalidate: 60 },
+        next: { revalidate: 60, tags: ["posts"] },
     });
 
     const json = await response.json();
@@ -106,7 +106,7 @@ async function request<T>(query: string, variables: Record<string, unknown> = {}
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ query, variables }),
-        next: { revalidate: 60 },
+        next: { revalidate: 60, tags: ["posts"] },
     });
 
     const json = await response.json();

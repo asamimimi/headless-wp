@@ -103,7 +103,7 @@ const readingMinutes = (html: string) => Math.max(1, Math.round(stripTags(html).
 async function getLatestPosts(): Promise<Post[]> {
     "use cache";
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const res = await fetch(endpoint, {
         method: 'POST',
@@ -131,7 +131,7 @@ async function getLatestPosts(): Promise<Post[]> {
 async function getCategiries(): Promise<Category[]> {
     "use cache";
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const res = await fetch(endpoint, {
         method: 'POST',

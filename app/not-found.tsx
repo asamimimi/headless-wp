@@ -7,7 +7,7 @@ import { fetchLatestPosts } from '@/lib/blogApi';
 
 export default async function NotFound() {
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const recommendedPosts = await fetchLatestPosts(3);
 

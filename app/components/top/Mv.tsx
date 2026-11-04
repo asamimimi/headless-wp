@@ -54,7 +54,7 @@ type MvPost = {
 async function getLatestPosts(): Promise<MvPost[]> {
     "use cache";
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const res = await fetch(endpoint, {
         method: 'POST',

@@ -149,7 +149,7 @@ export default async function PostPage({
 }) {
     const { slug } = await params
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const post = await fetchPostBySlug(slug);
     if (!post) notFound();

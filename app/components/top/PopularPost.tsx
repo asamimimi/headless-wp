@@ -44,7 +44,7 @@ query GetPopularPosts {
 async function getPopularPosts(): Promise<PopularPostData[]> {
     "use cache";
     cacheLife("hours");
-    cacheTag("menu");
+    cacheTag("posts");
 
     const res = await fetch(endpoint, {
         method: 'POST',
