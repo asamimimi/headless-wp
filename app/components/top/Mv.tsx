@@ -121,19 +121,13 @@ const Mv = async () => {
 
                     <div className="flex flex-wrap gap-4">
                         <Link
-                            href="#latest"
+                            href="/posts"
                             className={`flex items-center gap-2.5 rounded-full py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-inverse) drop-shadow-[0px_16px_20px_rgba(92,64,224,0.1)] transition-opacity hover:opacity-85 ${gradient}`}
                         >
                             最新の記事を読む
                             <Image src="/Top/Mv/icon-arrow-white.svg" alt="" width={16} height={16} />
                         </Link>
-                        <Link
-                            href="/about"
-                            className="hidden items-center lg:flex gap-2.5 rounded-full border border-(--color-border-default) bg-(--color-bg-surface) py-3.5 pr-6 pl-7 font-plex text-sm leading-normal font-semibold tracking-[0.84px] text-(--color-text-primary) transition-colors hover:border-(--color-accent-primary)"
-                        >
-                            About me
-                            <Image src="/Top/Mv/icon-arrow.svg" alt="" width={16} height={16} />
-                        </Link>
+
                     </div>
 
                     {/* <dl className="flex gap-10 pt-3 whitespace-nowrap">
